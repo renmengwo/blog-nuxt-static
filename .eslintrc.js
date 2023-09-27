@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     "env": {
         "browser": true,
         "es2021": true
@@ -31,7 +31,6 @@ export default {
         project: './tsconfig.json'
     },
     "plugins": [
-        'vue',
         '@typescript-eslint'
     ],
     "rules": {
