@@ -1,0 +1,40 @@
+// @use "element/index.scss";
+$color: red;
+$direction: (l:left, r:right, t:top, b:bottom);
+$text-direction: (l:left, r:right, c:center);
+  // 生成1-200的margin - padding
+  /*
+  * @return m-方向首字母-数值
+  * @return p-方向首字母-数值
+  */
+@for $i from 1 through 50 {
+.m-#{$i} {
+  margin: #{$i}px;
+}
+
+.p-#{$i} {
+  padding: #{$i}px;
+}
+
+  @each $classDirect,
+  $classValue in $direction {
+    .m-#{$classDirect}-#{$i} {
+      margin-#{$classValue}: #{$i}px;
+    }
+
+    .p-#{$classDirect}-#{$i} {
+      padding-#{$classValue}: #{$i}px;
+    }
+  }
+}
+
+/*
+* 生成text-align
+* @return t-方向首字母
+*/
+@each $textDirect,
+$textValue in $text-direction {
+  .t-#{$textDirect} {
+    text-align:#{$textValue}
+  }
+}

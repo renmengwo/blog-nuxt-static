@@ -17,9 +17,16 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/assets/style/_variable.scss" as *;'
+          // additionalData: `@use "@/assets/scss/element/index.scss" as element;`,
+          additionalData:
+            '@use "@/assets/style/element/index.scss" as element; @use "@/assets/style/_variables.scss" as *;'
+          // '@use "@/assets/style/_variables.scss" as *;'
         }
       }
     }
+  },
+  elementPlus: {
+    icon: 'ElIcon',
+    importStyle: 'scss'
   }
 })
