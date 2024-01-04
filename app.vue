@@ -1,11 +1,9 @@
 <template>
   <div>
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
-<style lang="scss" scoped>
-*{
-  margin:0;
-  padding: 0;
-}
-</style>
+<script setup lang="ts"></script>
+<style lang="scss" scoped></style>
