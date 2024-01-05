@@ -7,9 +7,10 @@
         <default-header />
       </el-header>
       <el-main><slot></slot></el-main>
-      <el-footer>
+      <el-footer height="40px">
         <default-footer />
       </el-footer>
+      <el-backtop :right="60" :bottom="100" />
     </el-container>
   </div>
 </template>

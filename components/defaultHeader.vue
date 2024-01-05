@@ -96,7 +96,7 @@ const states = [
               filterable
               remote
               reserve-keyword
-              placeholder="请输入标题"
+              placeholder="全站搜索"
               :remote-method="remoteMethod"
               :loading="loading"
               style="width: 100%"
@@ -139,7 +139,7 @@ const states = [
             </el-dropdown>
           </li>
           <li><span> 杂记 </span></li>
-          <li><span> ABout Me </span></li>
+          <li><span> About Me </span></li>
         </ul>
       </div>
     </div>
