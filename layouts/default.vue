@@ -6,7 +6,7 @@
       <el-header height="50px">
         <default-header />
       </el-header>
-      <el-main><slot></slot></el-main>
+      <el-main class="min-height"><slot></slot></el-main>
       <el-footer height="40px">
         <default-footer />
       </el-footer>
@@ -15,4 +15,8 @@
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.min-height {
+  min-height: calc(100vh - 91px);
+}
+</style>

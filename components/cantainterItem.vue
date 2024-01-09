@@ -8,10 +8,13 @@
     <div class="container-item-content">
       <div>
         <span class="m-r-20">2024-01-02</span>
-        <span class="c-p">这是标签</span>
+        <span class="c-p hover-active">这是标签</span>
       </div>
       <div class="c-p">
-        <span class="m-r-5">分类1</span>/<span class="m-l-5">分类2</span>
+        <span class="m-r-5 hover-active">分类1</span>/<span
+          class="m-l-5 hover-active"
+          >分类2</span
+        >
       </div>
     </div>
   </div>
@@ -44,6 +47,11 @@
     &:hover {
       color: $base-color;
     }
+  }
+}
+.hover-active {
+  &:hover {
+    color: $base-color;
   }
 }
 </style>
