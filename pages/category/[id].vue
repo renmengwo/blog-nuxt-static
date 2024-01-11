@@ -156,7 +156,8 @@
     margin-bottom: 20px
   }
   &-description{
-    color:#00323c
+    color:#00323c;
+    margin-bottom: 10px;
   }
   &-menu{
     margin-top:20px;
