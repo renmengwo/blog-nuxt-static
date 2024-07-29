@@ -3,8 +3,35 @@
   <div class="containter-box">
     <div class="containter-box-banner">banner图</div>
     <div class="containter-box-content">
-      <div class="containter-box-list content-box">
-        <cantainter-item v-for="item in 20" :key="item" />
+      <div class="containter-main">
+        <div class="containter-box-list content-box">
+          <cantainter-item v-for="item in 20" :key="item" />
+        </div>
+        <div class="containter-main-right">
+          <div class="content-box">
+            <div>
+              <div>
+                <p class="containter-main-img"></p>
+                <p class="containter-main-name">张三</p>
+              </div>
+              <div>
+                <div>
+                  <p>21</p>
+                  <p>标签数</p>
+                </div>
+                <div>
+                  <p>23</p>
+                  <p>文章数</p>
+                </div>
+                <div>
+                  <p>123</p>
+                  <p>点赞数</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-box m-t-20"></div>
+        </div>
       </div>
       <div class="containter-box-page">
         <el-pagination
@@ -23,8 +50,7 @@
   display: flex;
   flex-direction: column;
   &-content {
-    width: 80%;
-    min-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
   }
   &-banner {
@@ -33,8 +59,7 @@
     background-color: #f5f5f5;
   }
   &-list {
-    margin: 20px auto 0;
-    width: 100%;
+    width: calc(100% - 370px);
   }
   &-page {
     width: 100%;
@@ -42,6 +67,14 @@
     justify-content: flex-end;
     align-items: center;
     margin: 20px auto;
+  }
+}
+.containter-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &-right {
+    width: 350px;
   }
 }
 </style>

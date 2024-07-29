@@ -83,10 +83,6 @@ const states = [
 <template>
   <div class="header-box">
     <div class="header-box-content">
-      <div class="header-box-left">
-        <div class="header-box-left-logo"></div>
-        <div class="header-box-left-title">欢迎来到自由博客</div>
-      </div>
       <div class="header-box-right">
         <div class="header-box-right-seach">
           <client-only>
@@ -142,6 +138,10 @@ const states = [
           <li><span> About Me </span></li>
         </ul>
       </div>
+      <!--      <div class="header-box-left">
+        <div class="header-box-left-logo"></div>
+        &lt;!&ndash;        <div class="header-box-left-title">欢迎来到自由博客</div>&ndash;&gt;
+      </div>-->
     </div>
   </div>
 </template>
@@ -155,10 +155,11 @@ const states = [
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.12);
   &-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0 20px;
+    max-width: 1320px;
+    justify-content: flex-start;
+    margin: 0 auto;
   }
   &-left {
     height: 100%;
