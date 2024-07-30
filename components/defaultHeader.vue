@@ -82,8 +82,27 @@ const states = [
 
 <template>
   <div class="header-box">
-    <div class="header-box-content">
+    <div class="header-box-content content">
+      <div class="header-box-left"></div>
       <div class="header-box-right">
+        <ul class="header-box-right-nav m-r-40">
+          <li>
+            <span class="header-box-right-item">主页</span>
+          </li>
+          <li>
+            <el-dropdown>
+              <span class="header-box-right-item"> 分类 </span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>Action 1</el-dropdown-item>
+                  <el-dropdown-item>Action 2</el-dropdown-item>
+                  <el-dropdown-item>Action 3</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </li>
+          <li><span  class="header-box-right-item"> About Me </span></li>
+        </ul>
         <div class="header-box-right-seach">
           <client-only>
             <el-select
@@ -106,42 +125,7 @@ const states = [
             </el-select>
           </client-only>
         </div>
-        <ul class="header-box-right-nav">
-          <li>
-            <span>首页</span>
-          </li>
-          <li>
-            <el-dropdown>
-              <span> 前端开发 </span>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item>Action 1</el-dropdown-item>
-                  <el-dropdown-item>Action 2</el-dropdown-item>
-                  <el-dropdown-item>Action 3</el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </li>
-          <li>
-            <el-dropdown>
-              <span> 后端开发 </span>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item>Action 1</el-dropdown-item>
-                  <el-dropdown-item>Action 2</el-dropdown-item>
-                  <el-dropdown-item>Action 3</el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </li>
-          <li><span> 杂记 </span></li>
-          <li><span> About Me </span></li>
-        </ul>
       </div>
-      <!--      <div class="header-box-left">
-        <div class="header-box-left-logo"></div>
-        &lt;!&ndash;        <div class="header-box-left-title">欢迎来到自由博客</div>&ndash;&gt;
-      </div>-->
     </div>
   </div>
 </template>
@@ -150,16 +134,13 @@ const states = [
 .header-box {
   width: 100%;
   height: 50px;
-  background-color: #fff;
-  border-bottom: 1px solid #dcdfe6;
+  background-color: #EFF0F3;
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.12);
   &-content {
     display: flex;
     align-items: center;
     height: 100%;
-    max-width: 1320px;
-    justify-content: flex-start;
-    margin: 0 auto;
+    justify-content: space-between;
   }
   &-left {
     height: 100%;
@@ -167,34 +148,7 @@ const states = [
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
-    &-logo {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
-      background-color: #f00;
-      clip-path: polygon(
-        50% 0%,
-        61% 35%,
-        98% 35%,
-        68% 57%,
-        79% 91%,
-        50% 70%,
-        21% 91%,
-        32% 57%,
-        2% 35%,
-        39% 35%
-      );
-      transition: transform 1s ease;
-    }
-    &-title {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    &:hover {
-      .header-box-left-logo {
-        transform: rotate(360deg) scale(1.5);
-      }
-    }
+    width: 200px;
   }
   &-right {
     height: 100%;
@@ -205,7 +159,6 @@ const states = [
       width: 220px;
     }
     &-nav {
-      margin-left: 40px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -215,6 +168,13 @@ const states = [
         cursor: pointer;
         display: flex;
         align-items: center;
+        margin-left: 20px;
+      }
+    }
+    &-item{
+      color:#2B2C34;
+      &:hover{
+        color:$base-color;
       }
     }
   }
