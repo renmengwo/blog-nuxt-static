@@ -28,5 +28,8 @@
     "prettier": "^3.0.3",
     "sass": "^1.64.2",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@wangeditor/editor-for-vue": "^5.1.12"
   }
 }
