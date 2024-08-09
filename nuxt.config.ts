@@ -20,6 +20,14 @@ export default defineNuxtConfig({
     host: '0.0.0.0' // default: localhost
   },
   css: ['@/assets/style/index.scss'],
+  nitro: {
+    devProxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true
+      }
+    }
+  },
   vite: {
     css: {
       preprocessorOptions: {
