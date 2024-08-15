@@ -3,10 +3,11 @@ import cateCard from './cateCard.vue'
 import { ref } from 'vue'
 const dataList = ref([])
 
-const { data, pending, error, refresh } = await useAsyncData(
+/* const { data, pending, error, refresh } = await useAsyncData(
   'category',
   async () => await $fetch('/api/category/getCategory')
-)
+)*/
+const { data } = await useFetch('/api/category/getCategory')
 console.log(data.value, 'data')
 </script>
 
