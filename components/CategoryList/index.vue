@@ -1,28 +1,23 @@
 <script setup lang="ts">
 import cateCard from './cateCard.vue'
-import { ref } from 'vue'
-const dataList = ref([])
 
 /* const { data, pending, error, refresh } = await useAsyncData(
   'category',
   async () => await $fetch('/api/category/getCategory')
 )*/
-const { data } = await useFetch('/api/category/getCategory')
-console.log(data.value, 'data')
+const { data: result } = await useFetch('/api/category/getCategory')
+console.log(result)
 </script>
 
 <template>
   <div class="cate-box">
     <div class="p-4 cate-box-list">
-      {{ dataList }}
-      <cateCard class="m-r-30 c-p" />
-      <cateCard class="m-r-30 c-p" />
-      <cateCard class="m-r-30 c-p" />
-      <cateCard class="m-r-30 c-p" />
-      <cateCard class="m-r-30 c-p" />
-      <cateCard class="m-r-30 c-p" />
-      <cateCard class="m-r-30 c-p" />
-      <cateCard class="c-p" />
+      <cateCard
+        v-for="item in result.data"
+        :key="item.id"
+        class="m-r-30 c-p"
+        :item="item"
+      />
     </div>
   </div>
 </template>
