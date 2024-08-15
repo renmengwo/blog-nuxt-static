@@ -5,15 +5,21 @@
   <div class="content-box category-box">
     <div class="category-box-content">
       <div class="category-box-title">
-        <div class="category-box-name">前端开发</div>
+        <div class="category-box-name">
+          前端开发
+        </div>
         <p class="category-box-description">
           记录关于HTML、CSS、JavaScript等前端框架中常见问题和技术难点
         </p>
       </div>
       <div class="category-box-menu">
-        <p class="category-box-menutitle">目录</p>
+        <p class="category-box-menutitle">
+          目录
+        </p>
         <div class="category-menu">
-          <p class="category-menu-title">1、HTML</p>
+          <p class="category-menu-title">
+            1、HTML
+          </p>
           <ul class="category-menu-list clearfix">
             <li>
               <span>1-1、Git分支新建切换</span>
@@ -52,7 +58,9 @@
               <span>1-1、Git分支新建切换</span>
             </li>
           </ul>
-          <p class="category-menu-title">1、HTML</p>
+          <p class="category-menu-title">
+            1、HTML
+          </p>
           <ul class="category-menu-list clearfix">
             <li>
               <span>1-1、Git分支新建切换</span>
@@ -91,7 +99,9 @@
               <span>1-1、Git分支新建切换</span>
             </li>
           </ul>
-          <p class="category-menu-title">1、HTML</p>
+          <p class="category-menu-title">
+            1、HTML
+          </p>
           <ul class="category-menu-list clearfix">
             <li>
               <span>1-1、Git分支新建切换</span>

@@ -37,15 +37,15 @@ const handleCreated = (editor: any): void => {
       <Toolbar
         style="border-bottom: 1px solid #ccc"
         :editor="editorRef"
-        :defaultConfig="toolbarConfig"
+        :default-config="toolbarConfig"
         :mode="mode"
       />
       <Editor
-        style="height: 500px; overflow-y: hidden;"
         v-model="valueHtml"
-        :defaultConfig="editorConfig"
+        style="height: 500px; overflow-y: hidden;"
+        :default-config="editorConfig"
         :mode="mode"
-        @onCreated="handleCreated"
+        @on-created="handleCreated"
       />
     </div>
   </client-only>

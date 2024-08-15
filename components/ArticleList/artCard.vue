@@ -3,11 +3,15 @@
 </script>
 
 <template>
-<div class="article-item c-p">
-  <div class="article-item-top m-b-16"></div>
-  <p class="article-item-title">标题</p>
-  <p class="article-item-details m-t-10">这是内容详情片段这是内容详情片段</p>
-</div>
+  <div class="article-item c-p">
+    <div class="article-item-top m-b-16" />
+    <p class="article-item-title">
+      标题
+    </p>
+    <p class="article-item-details m-t-10">
+      这是内容详情片段这是内容详情片段
+    </p>
+  </div>
 </template>
 
 <style scoped lang="scss">

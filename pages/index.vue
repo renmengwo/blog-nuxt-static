@@ -5,20 +5,18 @@ import BannerBox from '@/components/BannerBox/index.vue'
 </script>
 <template>
   <div class="middle-box content">
-    <div class="middle-box-banner  m-t-20">
-      <BannerBox></BannerBox>
+    <div class="middle-box-banner m-t-20">
+      <BannerBox />
     </div>
     <div class="middle-card m-t-20">
       <p class="middle-card-title c-p m-b-10">
-        <span>
-          查看所有分类
-        </span>
+        <span> 查看所有分类 </span>
       </p>
-      <CategoryList></CategoryList>
+      <CategoryList />
     </div>
     <div class="middle-art m-t-20">
-      <div></div>
-      <ArticleList></ArticleList>
+      <div />
+      <ArticleList />
     </div>
   </div>
 </template>
@@ -31,19 +29,18 @@ import BannerBox from '@/components/BannerBox/index.vue'
     height: 400px;
   }
 }
-.middle-card{
-  &-title{
+.middle-card {
+  &-title {
     font-size: 18px;
     text-align: right;
     line-height: 26px;
     height: 26px;
-    span{
+    span {
       color: #333;
-      &:hover{
+      &:hover {
         color: $base-color;
       }
     }
-
   }
 }
 </style>

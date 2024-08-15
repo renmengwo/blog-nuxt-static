@@ -23,8 +23,15 @@ export default defineNuxtConfig({
   nitro: {
     devProxy: {
       '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true
+        target: 'http://localhost:3001', // 这里是接口地址
+        changeOrigin: true,
+        prependPath: true
+      }
+    },
+    // 该配置用于服务端请求转发
+    routeRules: {
+      '/api/**': {
+        proxy: 'http://localhost:3001/**'
       }
     }
   },

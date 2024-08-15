@@ -1,9 +1,12 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true,
-    es2021: true
+    browser: true, // 支持浏览器环境的检测
+    es2021: true, // 支持es2021语法的检测
+    node: true // 支持node环境的检测
   },
   extends: [
+    '@nuxt/eslint-config',
     'standard-with-typescript',
     'eslint:recommended',
     'plugin:vue/vue3-essential',
@@ -24,11 +27,12 @@ module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
+    project: './tsconfig.json', // 确保路径正确
     ecmaVersion: 'latest',
     sourceType: 'module',
     extraFileExtensions: ['.vue']
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'vue'],
   rules: {
     'linebreak-style': ['error', 'windows'],
     quotes: ['error', 'single'],

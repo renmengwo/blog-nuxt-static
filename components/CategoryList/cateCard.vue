@@ -3,12 +3,12 @@
 </script>
 
 <template>
-<div class="card-item">
-  <div class="card-item-middle m-b-30"></div>
-  <p class="card-item-label">
-    Vue
-  </p>
-</div>
+  <div class="card-item">
+    <div class="card-item-middle m-b-30" />
+    <p class="card-item-label">
+      Vue
+    </p>
+  </div>
 </template>
 
 <style scoped lang="scss">

@@ -54,35 +54,51 @@ const handleInputConfirm = (): void => {
 
 <template>
   <div class="art-add-box m-t-20">
-    <el-form ref="form" :model="formData" label-width="80px" :rules="formRule">
-      <el-form-item label="标题" prop="title">
+    <el-form
+      ref="form"
+      :model="formData"
+      label-width="80px"
+      :rules="formRule"
+    >
+      <el-form-item
+        label="标题"
+        prop="title"
+      >
         <el-input
           v-model="formData.title"
           placeholder="请输入标题，不超过50个字"
           maxlength="50"
           show-word-limit
           clearable
-        ></el-input>
+        />
       </el-form-item>
-      <el-form-item label="分类" prop="categoryId">
-        <el-select v-model="formData.categoryId" placeholder="请选择文章分类" clearable style="width:100%">
+      <el-form-item
+        label="分类"
+        prop="categoryId"
+      >
+        <el-select
+          v-model="formData.categoryId"
+          placeholder="请选择文章分类"
+          clearable
+          style="width:100%"
+        >
           <el-option
             v-for="item in optionsList"
             :key="item.value"
             :label="item.label"
-            :value="item.value">
-          </el-option>
+            :value="item.value"
+          />
         </el-select>
       </el-form-item>
       <el-form-item label="内容">
-          <Editor></Editor>
+        <Editor />
       </el-form-item>
       <el-form-item label="标签">
         <div class="tag-box">
           <el-tag
-            class="m-r-6"
             v-for="tag in formData.tags"
             :key="tag"
+            class="m-r-6"
             closable
             :disable-transitions="false"
             @close="handleClose(tag)"
@@ -97,7 +113,12 @@ const handleInputConfirm = (): void => {
             @keyup.enter="handleInputConfirm"
             @blur="handleInputConfirm"
           />
-          <el-button v-else class="button-new-tag" size="small" @click="showInput">
+          <el-button
+            v-else
+            class="button-new-tag"
+            size="small"
+            @click="showInput"
+          >
             + 添加标签
           </el-button>
         </div>

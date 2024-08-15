@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="footer-box">这是底部内容</div>
+  <div class="footer-box">
+    这是底部内容
+  </div>
 </template>
 
 <style scoped lang="scss">

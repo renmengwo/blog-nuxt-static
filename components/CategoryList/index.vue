@@ -1,27 +1,36 @@
 <script setup lang="ts">
 import cateCard from './cateCard.vue'
+import { ref } from 'vue'
+const dataList = ref([])
+
+const { data, pending, error, refresh } = await useAsyncData(
+  'category',
+  async () => await $fetch('/api/category/getCategory')
+)
+console.log(data.value, 'data')
 </script>
 
 <template>
   <div class="cate-box">
     <div class="p-4 cate-box-list">
-      <cateCard class="m-r-30 c-p"></cateCard>
-      <cateCard class="m-r-30 c-p"></cateCard>
-      <cateCard class="m-r-30 c-p"></cateCard>
-      <cateCard class="m-r-30 c-p"></cateCard>
-      <cateCard class="m-r-30 c-p"></cateCard>
-      <cateCard class="m-r-30 c-p"></cateCard>
-      <cateCard class="m-r-30 c-p"></cateCard>
-      <cateCard class="c-p"></cateCard>
+      {{ dataList }}
+      <cateCard class="m-r-30 c-p" />
+      <cateCard class="m-r-30 c-p" />
+      <cateCard class="m-r-30 c-p" />
+      <cateCard class="m-r-30 c-p" />
+      <cateCard class="m-r-30 c-p" />
+      <cateCard class="m-r-30 c-p" />
+      <cateCard class="m-r-30 c-p" />
+      <cateCard class="c-p" />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.cate-box{
+.cate-box {
   height: 350px;
   overflow: hidden;
-  &-list{
+  &-list {
     display: flex;
     justify-content: flex-start;
   }

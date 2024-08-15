@@ -3,7 +3,7 @@
 <template>
   <div>
     <div>
-      <p></p>
+      <p />
       <div>
         <div>
           <p>文章数</p>
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div></div>
+    <div />
   </div>
 </template>
 

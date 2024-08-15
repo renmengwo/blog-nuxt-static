@@ -7,7 +7,7 @@
         <default-header />
       </el-header>
       <el-main class="min-height content">
-        <slot></slot>
+        <slot />
       </el-main>
       <el-footer height="40px">
         <default-footer />
