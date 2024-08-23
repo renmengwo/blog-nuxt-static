@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+const route = useRoute()
 const { data: result } = await useFetch('/api/article/detail', {
   method: 'get',
   query: {
-    id: 1
+    id: route.params.id
   }
 })
 </script>
@@ -12,34 +14,27 @@ const { data: result } = await useFetch('/api/article/detail', {
     <div class="article-box-left">
       <div class="content-box article-box-containter">
         <h1 class="article-box-title">
-          这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题
+          {{ result.data.title }}
         </h1>
         <div class="article-box-info">
-          <span class="fr">分类：分类1/分类2</span>
-          <span>作者：张三</span>
-          <span>发布时间：2021-01-01</span>
+          <span class="fr">分类：{{ result.data.categoryName }}</span>
+          <span>作者：默认</span>
+          <span>发布时间：{{ formatTimestamp(result.data.createdAt) }}</span>
           <span>阅读量：100</span>
         </div>
         <div class="article-box-content">
-          这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题
-          这是文章标题这是文章标题这是文章标题这是文章标题
+          {{ result.data.content }}
         </div>
         <div class="article-box-tags">
           <span>标签:</span>
-          <p>这是标签1</p>
-          <p>这是标签1</p>
-          <p>这是标签1</p>
-          <p>这是标签1</p>
+          <el-tag
+            v-for="tag in result.data.tags"
+            :key="tag"
+            class="m-r-6"
+            :disable-transitions="false"
+          >
+            {{ tag }}
+          </el-tag>
         </div>
       </div>
       <div class="article-box-page content-box">

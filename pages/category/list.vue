@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const { data: result } = await useFetch('/api/category/getArticles', {
-  method: 'get'
-})
-console.log(result.value.data)
+const { data: result } = await useFetch('/api/category/getArticles')
 </script>
 
 <template>
