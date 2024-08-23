@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { data: result } = await useFetch('/api/article/detail', {
+  method: 'get',
+  query: {
+    id: 1
+  }
+})
+</script>
 
 <template>
   <div class="article-box">
@@ -44,9 +51,7 @@
       <div class="article-box-user content-box">
         <div>
           <p class="article-box-img" />
-          <p class="article-box-name">
-            张三
-          </p>
+          <p class="article-box-name">张三</p>
         </div>
         <div class="article-box-type">
           <p>文章数：100</p>
@@ -58,9 +63,7 @@
         <div class="article-box-scrollbar">
           <el-scrollbar height="100%">
             <ul>
-              <li class="active">
-                目录一
-              </li>
+              <li class="active">目录一</li>
               <li>目录一</li>
               <li>目录一</li>
               <li>目录一</li>

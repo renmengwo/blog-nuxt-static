@@ -7,15 +7,11 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 const editorRef = shallowRef()
 
 // 内容 HTML
-const valueHtml = ref('<p>hello</p>')
+const valueHtml = ref('<p></p>')
 const mode = ref('default')
 
 // 模拟 ajax 异步获取内容
-onMounted(() => {
-  setTimeout(() => {
-    valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>'
-  }, 1500)
-})
+onMounted(() => {})
 
 const toolbarConfig = {}
 const editorConfig = { placeholder: '请输入内容...' }
@@ -29,6 +25,9 @@ onBeforeUnmount(() => {
 const handleCreated = (editor: any): void => {
   editorRef.value = editor // 记录 editor 实例，重要！
 }
+defineExpose({
+  valueHtml
+})
 </script>
 
 <template>
@@ -42,7 +41,7 @@ const handleCreated = (editor: any): void => {
       />
       <Editor
         v-model="valueHtml"
-        style="height: 500px; overflow-y: hidden;"
+        style="height: 500px; overflow-y: hidden"
         :default-config="editorConfig"
         :mode="mode"
         @on-created="handleCreated"
@@ -51,6 +50,4 @@ const handleCreated = (editor: any): void => {
   </client-only>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

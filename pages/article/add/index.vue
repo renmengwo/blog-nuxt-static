@@ -1,36 +1,22 @@
 <script setup lang="ts">
 import Editor from '@/components/wangEditor/index.vue'
 import { reactive, ref, nextTick } from 'vue'
+import { ElMessage } from '#imports'
+const { data: result } = await useFetch('/api/category/getCategory')
 const formData = reactive({
   title: '',
-  content: '',
+  content: '测试用的123',
   categoryId: '',
   tags: []
 })
-const optionsList = ref([{
-  value: '1',
-  label: '前端'
-}, {
-  value: '2',
-  label: '后端'
-}, {
-  value: '3',
-  label: '数据库'
-}, {
-  value: '4',
-  label: '运维'
-}])
 const formRule = reactive({
-  title: [
-    { required: true, message: '请输入标题', trigger: 'blur' }
-  ],
-  categoryId: [
-    { required: true, message: '请选择分类', trigger: 'change' }
-  ]
+  title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
+  categoryId: [{ required: true, message: '请选择分类', trigger: 'change' }]
 })
 const inputValue: any = ref('')
 const inputVisible = ref(false)
 const InputRef = ref(null)
+const editRef = ref(null)
 
 const handleClose = (tag: string): void => {
   formData.tags.splice(formData.tags.indexOf(tag), 1)
@@ -50,20 +36,26 @@ const handleInputConfirm = (): void => {
   inputVisible.value = false
   inputValue.value = ''
 }
+const handleSubmit = async () => {
+  formData.content = editRef.value.valueHtml
+  const { data: result } = await useAsyncData(
+    'article',
+    async () =>
+      await $fetch('/api/article/add', {
+        method: 'post',
+        body: formData
+      })
+  )
+  if (result.value.code === 200) {
+    ElMessage.success('添加成功')
+  }
+}
 </script>
 
 <template>
   <div class="art-add-box m-t-20">
-    <el-form
-      ref="form"
-      :model="formData"
-      label-width="80px"
-      :rules="formRule"
-    >
-      <el-form-item
-        label="标题"
-        prop="title"
-      >
+    <el-form ref="form" :model="formData" label-width="80px" :rules="formRule">
+      <el-form-item label="标题" prop="title">
         <el-input
           v-model="formData.title"
           placeholder="请输入标题，不超过50个字"
@@ -72,26 +64,23 @@ const handleInputConfirm = (): void => {
           clearable
         />
       </el-form-item>
-      <el-form-item
-        label="分类"
-        prop="categoryId"
-      >
+      <el-form-item label="分类" prop="categoryId">
         <el-select
           v-model="formData.categoryId"
           placeholder="请选择文章分类"
           clearable
-          style="width:100%"
+          style="width: 100%"
         >
           <el-option
-            v-for="item in optionsList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in result.data"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
           />
         </el-select>
       </el-form-item>
       <el-form-item label="内容">
-        <Editor />
+        <Editor ref="editRef" />
       </el-form-item>
       <el-form-item label="标签">
         <div class="tag-box">
@@ -124,6 +113,9 @@ const handleInputConfirm = (): void => {
         </div>
       </el-form-item>
     </el-form>
+    <div class="art-add-bottom">
+      <el-button type="primary" @click="handleSubmit"> 提交 </el-button>
+    </div>
   </div>
 </template>
 
@@ -133,8 +125,12 @@ const handleInputConfirm = (): void => {
     width: 100%;
     height: 100%;
   }
+  &-bottom {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
-.tag-box{
+.tag-box {
   display: flex;
 }
 </style>

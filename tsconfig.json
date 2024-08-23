@@ -9,6 +9,7 @@
     ".eslintrc.js",
     "src/**/*",
     "components/**/*",
-    "pages/**/*"
+    "pages/**/*",
+    "utils/**/*"
   ]
 }

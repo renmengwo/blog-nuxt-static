@@ -6,7 +6,6 @@ import cateCard from './cateCard.vue'
   async () => await $fetch('/api/category/getCategory')
 )*/
 const { data: result } = await useFetch('/api/category/getCategory')
-console.log(result)
 </script>
 
 <template>
