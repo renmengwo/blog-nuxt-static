@@ -8,17 +8,24 @@ const props = defineProps({
     required: true
   }
 })
+const emits = defineEmits(['onClick'])
 const { item } = toRefs(props)
+const handleClick = (obj: any): void => {
+  emits('onClick', obj)
+}
+const stripHtmlTags = htmlString => {
+  return htmlString.replace(/<\/?[^>]+(>|$)/g, '')
+}
 </script>
 
 <template>
-  <div class="article-item c-p">
+  <div class="article-item c-p" @click="handleClick(item)">
     <div class="article-item-top m-b-16" />
     <p class="article-item-title">
       {{ item.title }}
     </p>
     <p class="article-item-details m-t-10">
-      {{ truncateString(item.content, 60) }}
+      {{ truncateString(stripHtmlTags(item.content), 60) }}
     </p>
     <p class="article-item-bottom">
       <span />

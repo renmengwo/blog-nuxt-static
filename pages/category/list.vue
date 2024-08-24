@@ -1,29 +1,47 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const { data: result } = await useFetch('/api/category/getArticles')
+const handleClick = (val: any) => {
+  const { id } = val
+  void router.push({
+    path: `/article/details/${id}`
+  })
+}
 </script>
 
 <template>
-  <div class="content-box category-box">
-    <div class="category-box-content">
-      <div class="category-box-title">
-        <div class="category-box-name">分类汇总</div>
-        <p class="category-box-description">记录开发过程中常见问题和技术难点</p>
-      </div>
-      <div class="category-box-menu">
-        <p class="category-box-menutitle">目录</p>
-        <div class="category-menu">
-          <template v-for="(item, index) in result.data" :key="item.id">
-            <p class="category-menu-title">{{ index + 1 }}、{{ item.name }}</p>
-            <ul class="category-menu-list clearfix">
-              <li v-for="(child, childIndex) in item.articles" :key="child.id">
-                <span
-                  >{{ index + 1 }} - {{ childIndex + 1 }}、{{
-                    truncateString(child.title, 60)
-                  }}</span
+  <div class="category-box">
+    <div class="content-box">
+      <div class="category-box-content">
+        <div class="category-box-title">
+          <div class="category-box-name">分类汇总</div>
+          <p class="category-box-description">
+            记录开发过程中常见问题和技术难点
+          </p>
+        </div>
+        <div class="category-box-menu">
+          <p class="category-box-menutitle">目录</p>
+          <div class="category-menu">
+            <template v-for="(item, index) in result.data" :key="item.id">
+              <p class="category-menu-title">
+                {{ index + 1 }}、{{ item.name }}
+              </p>
+              <ul class="category-menu-list clearfix">
+                <li
+                  v-for="(child, childIndex) in item.articles"
+                  :key="child.id"
+                  @click="handleClick(child)"
                 >
-              </li>
-            </ul>
-          </template>
+                  <span
+                    >{{ index + 1 }} - {{ childIndex + 1 }}、{{
+                      truncateString(child.title, 60)
+                    }}</span
+                  >
+                </li>
+              </ul>
+            </template>
+          </div>
         </div>
       </div>
     </div>
@@ -32,8 +50,8 @@ const { data: result } = await useFetch('/api/category/getArticles')
 
 <style scoped lang="scss">
 .category-box {
-  width: 100%;
   margin: 30px auto;
+  padding: 0 10px;
   &-content {
     padding: 10px 30px 20px;
   }

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import artCard from './artCard.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const { data: result } = await useFetch('/api/article/list', {
   method: 'get',
   params: {
@@ -7,7 +9,12 @@ const { data: result } = await useFetch('/api/article/list', {
     pageSize: 10
   }
 })
-console.log(result.value.data.list)
+const handleClick = (val: any) => {
+  const { id } = val
+  void router.push({
+    path: `/article/details/${id}`
+  })
+}
 </script>
 
 <template>
@@ -17,6 +24,7 @@ console.log(result.value.data.list)
       :key="item.id"
       :item="item"
       class="m-b-20 m-r-24"
+      @on-click="handleClick"
     />
   </div>
 </template>

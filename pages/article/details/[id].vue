@@ -1,11 +1,25 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 const route = useRoute()
+const router = useRouter()
 const { data: result } = await useFetch('/api/article/detail', {
   method: 'get',
   query: {
     id: route.params.id
   }
+})
+const handleClick = (val: any) => {
+  if (!val) return
+  const { id } = val
+  void router.push({
+    path: `/article/details/${id}`
+  })
+}
+
+useSeoMeta({
+  title: result.value.data.currentArticle.title,
+  description: result.value.data.currentArticle.title,
+  keywords: result.value.data.currentArticle.categoryName,
+  'X-XSS-Protection': true
 })
 </script>
 
@@ -14,21 +28,25 @@ const { data: result } = await useFetch('/api/article/detail', {
     <div class="article-box-left">
       <div class="content-box article-box-containter">
         <h1 class="article-box-title">
-          {{ result.data.title }}
+          {{ result.data.currentArticle.title }}
         </h1>
         <div class="article-box-info">
-          <span class="fr">分类：{{ result.data.categoryName }}</span>
-          <span>作者：默认</span>
-          <span>发布时间：{{ formatTimestamp(result.data.createdAt) }}</span>
-          <span>阅读量：100</span>
+          <span class="fr"
+            >发布时间：{{
+              formatTimestamp(result.data.currentArticle.createdAt)
+            }}</span
+          >
+          <span>阅读量：{{ result.data.currentArticle.viewCount }}</span>
+          <span>分类：{{ result.data.currentArticle.categoryName }}</span>
         </div>
-        <div class="article-box-content">
-          {{ result.data.content }}
-        </div>
+        <div
+          class="article-box-content"
+          v-html="result.data.currentArticle.content"
+        />
         <div class="article-box-tags">
           <span>标签:</span>
           <el-tag
-            v-for="tag in result.data.tags"
+            v-for="tag in result.data.currentArticle.tags"
             :key="tag"
             class="m-r-6"
             :disable-transitions="false"
@@ -38,8 +56,16 @@ const { data: result } = await useFetch('/api/article/detail', {
         </div>
       </div>
       <div class="article-box-page content-box">
-        <p>上一篇：<span>在 Vue 中读取本地文本文件（兼容各种浏览器）</span></p>
-        <p>下一篇：<span>在 Vue 中读取本地文本文件（兼容各种浏览器）</span></p>
+        <p @click="handleClick(result.data.prevArticle)">
+          上一篇：<span>{{
+            result.data.prevArticle ? result.data.prevArticle.title : ''
+          }}</span>
+        </p>
+        <p @click="handleClick(result.data.nextArticle)">
+          下一篇：<span>{{
+            result.data.nextArticle ? result.data.nextArticle.title : ''
+          }}</span>
+        </p>
       </div>
     </div>
     <div class="article-box-right">
@@ -78,9 +104,8 @@ const { data: result } = await useFetch('/api/article/detail', {
 
 <style scoped lang="scss">
 .article-box {
-  width: 80%;
-  min-width: 1200px;
   margin: 30px auto;
+  padding: 0 10px;
   display: flex;
   &-title {
     font-size: 24px;
@@ -204,6 +229,17 @@ const { data: result } = await useFetch('/api/article/detail', {
   }
   &-containter {
     padding: 10px 20px 20px;
+  }
+}
+</style>
+<style lang="scss">
+.article-box-content {
+  ol,
+  ul {
+    padding-left: 20px;
+  }
+  li {
+    list-style: unset;
   }
 }
 </style>

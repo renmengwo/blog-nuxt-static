@@ -7,7 +7,9 @@
       <div class="header-box-right">
         <ul class="header-box-right-nav m-r-40">
           <li>
-            <span class="header-box-right-item">主页</span>
+            <span class="header-box-right-item">
+              <nuxt-link to="/">主页</nuxt-link>
+            </span>
           </li>
           <li><span class="header-box-right-item"> About Me </span></li>
         </ul>
