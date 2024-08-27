@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@nuxt/vue-app": "^2.18.1",
-    "@wangeditor/editor-for-vue": "^5.1.12"
+    "@wangeditor/editor-for-vue": "^5.1.12",
+    "highlight.js": "^11.10.0"
   }
 }

@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 
-import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
+import { onBeforeUnmount, ref, shallowRef, onMounted, nextTick } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef()
 
 // 内容 HTML
-const valueHtml = ref('<p></p>')
+const valueHtml = ref('')
 const mode = ref('default')
 
 // 模拟 ajax 异步获取内容
-onMounted(() => {})
+onMounted(() => {
+  valueHtml.value = null
+})
 
 const toolbarConfig = {}
 const editorConfig = { placeholder: '请输入内容...' }
@@ -22,7 +24,7 @@ onBeforeUnmount(() => {
   if (editor == null) return
   editor.destroy()
 })
-const handleCreated = (editor: any): void => {
+const handleCreated = async (editor: any): void => {
   editorRef.value = editor // 记录 editor 实例，重要！
 }
 defineExpose({

@@ -1,24 +1,46 @@
 <script setup lang="ts">
 import Editor from '@/components/wangEditor/index.vue'
-import { reactive, ref, nextTick } from 'vue'
+import { reactive, ref, nextTick, onMounted } from 'vue'
 import { ElMessage } from '#imports'
-const { data: result } = await useFetch('/api/category/getCategory')
+const route = useRoute()
+const { data: cateResult } = await useFetch('/api/category/getCategory')
+
 const formData = reactive({
   title: '',
   content: '',
   categoryId: '',
+  id: '',
   tags: []
-})
-const formRule = reactive({
-  title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
-  categoryId: [{ required: true, message: '请选择分类', trigger: 'change' }],
-  content: [{ required: true, message: '请输入文章内容', trigger: 'blur' }]
 })
 const inputValue: any = ref('')
 const inputVisible = ref(false)
 const InputRef = ref(null)
 const editRef = ref(null)
 const formRef = ref(null)
+const formRule = reactive({
+  title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
+  categoryId: [{ required: true, message: '请选择分类', trigger: 'change' }],
+  content: [{ required: true, message: '请输入文章内容', trigger: 'blur' }]
+})
+const { data: result } = await useFetch('/api/article/detail', {
+  method: 'get',
+  query: {
+    id: route.params.id
+  }
+})
+onMounted(() => {
+  initFormData()
+})
+const initFormData = () => {
+  if (result.value.code === 200) {
+    formData.title = result.value.data.currentArticle.title
+    formData.categoryId = result.value.data.currentArticle.categoryId
+    formData.tags = result.value.data.currentArticle.tags
+    formData.content = result.value.data.currentArticle.content
+    formData.id = result.value.data.currentArticle.id
+    editRef.value.valueHtml = result.value.data.currentArticle.content
+  }
+}
 
 const handleClose = (tag: string): void => {
   formData.tags.splice(formData.tags.indexOf(tag), 1)
@@ -45,13 +67,13 @@ const handleSubmit = async () => {
       const { data: result } = await useAsyncData(
         'article',
         async () =>
-          await $fetch('/api/article/add', {
+          await $fetch('/api/article/update', {
             method: 'post',
             body: formData
           })
       )
       if (result.value.code === 200) {
-        ElMessage.success('添加成功')
+        ElMessage.success('编辑成功')
       }
     }
   })
@@ -83,14 +105,14 @@ const handleSubmit = async () => {
           style="width: 100%"
         >
           <el-option
-            v-for="item in result.data"
+            v-for="item in cateResult.data"
             :key="item.id"
             :label="item.name"
             :value="item.id"
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="内容" prop="content">
+      <el-form-item label="内容">
         <Editor ref="editRef" />
       </el-form-item>
       <el-form-item label="标签">

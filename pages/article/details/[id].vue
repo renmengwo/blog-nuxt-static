@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import 'highlight.js/styles/monokai-sublime.css'
+import hljs from 'highlight.js'
 const route = useRoute()
 const router = useRouter()
 const { data: result } = await useFetch('/api/article/detail', {
@@ -14,11 +17,22 @@ const handleClick = (val: any) => {
     path: `/article/details/${id}`
   })
 }
-
+const handleSetCodeLight = () => {
+  const code = document.querySelectorAll('pre code')
+  code.forEach(block => {
+    hljs.highlightElement(block)
+  })
+}
+onMounted(() => {
+  handleSetCodeLight()
+})
 useSeoMeta({
   title: result.value.data.currentArticle.title,
   description: result.value.data.currentArticle.title,
-  keywords: result.value.data.currentArticle.categoryName,
+  keywords:
+    result.value.data.currentArticle.tags.length > 0
+      ? result.value.data.currentArticle.tags.toString()
+      : result.value.data.currentArticle.categoryName,
   'X-XSS-Protection': true
 })
 </script>
@@ -234,6 +248,13 @@ useSeoMeta({
 </style>
 <style lang="scss">
 .article-box-content {
+  font-family: 'Microsoft yahei', Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  code,
+  pre {
+    font-family: 'Microsoft yahei', Tahoma, Arial, Helvetica, sans-serif;
+  }
   ol,
   ul {
     padding-left: 20px;
