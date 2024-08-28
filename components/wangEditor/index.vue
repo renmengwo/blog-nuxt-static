@@ -16,8 +16,31 @@ onMounted(() => {
 })
 
 const toolbarConfig = {}
-const editorConfig = { placeholder: '请输入内容...' }
-
+const editorConfig = {
+  placeholder: '请输入内容',
+  MENU_CONF: {
+    uploadImage: {
+      server: 'http://localhost:4000/api/file/upload', // 上传图片接口地址
+      maxFileSize: 5 * 1024 * 1024, // 10M
+      fieldName: 'file',
+      onSuccess(file, res) {
+        console.log('onSuccess', file, res)
+      },
+      onFailed(file, res) {
+        alert(res.message)
+        console.log('onFailed', file, res)
+      },
+      onError(file, err, res) {
+        alert(err.message)
+        console.error('onError', file, err, res)
+      },
+      customInsert(res, insertFn) {
+        const url = res.data.url
+        insertFn(url)
+      }
+    }
+  }
+}
 // 组件销毁时，也及时销毁编辑器
 onBeforeUnmount(() => {
   const editor = editorRef.value

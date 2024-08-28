@@ -60,6 +60,20 @@ const handleSubmit = async () => {
 
 <template>
   <div class="art-add-box m-t-20">
+    <el-upload
+      class="upload-demo"
+      action="http://localhost:4000/api/file/upload"
+      :limit="3"
+      :file-list="[
+        { name: 'name', url: 'url' },
+        { name: 'name2', url: 'url' }
+      ]"
+    >
+      <el-button size="small" type="primary"> 点击上传 </el-button>
+      <template #tip>
+        <div class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </template>
+    </el-upload>
     <el-form
       ref="formRef"
       :model="formData"
