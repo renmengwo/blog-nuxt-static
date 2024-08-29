@@ -16,9 +16,14 @@ const handleClickCate = () => {
       <BannerBox />
     </div>
     <div class="middle-card m-t-20">
-      <p class="middle-card-title c-p m-b-10">
-        <span @click="handleClickCate"> 查看所有分类 </span>
-      </p>
+      <div class="middle-card-title c-p m-b-10">
+        <div class="middle-card-route" @click="handleClickCate">
+          <span> 查看所有分类 </span>
+          <el-icon>
+            <ElIconArrowRightBold />
+          </el-icon>
+        </div>
+      </div>
       <CategoryList />
     </div>
     <div class="middle-art m-t-20">
@@ -47,6 +52,14 @@ const handleClickCate = () => {
       &:hover {
         color: $base-color;
       }
+    }
+  }
+  &-route {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &:hover {
+      color: $base-color;
     }
   }
 }

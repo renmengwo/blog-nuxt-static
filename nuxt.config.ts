@@ -4,11 +4,23 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   app: {
     head: {
-      title: '',
-      meta: [],
+      title: '不是秃顶的胖子不是一个好开发的个人博客',
+      meta: [
+        {
+          name: 'keywords',
+          content:
+            '开发，前端，后端，全栈，技术，博客， 网站， NUXT， VUE， SSR， NODE， TS'
+        },
+        {
+          name: 'description',
+          content:
+            '一个不是秃顶的胖子的不是一个好开发的个人博客，网站主要分享开发，前端，后端，全栈，技术等相关内容'
+        }
+      ],
       link: [],
       script: []
-    }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   alias: {
     assets: '/assets'

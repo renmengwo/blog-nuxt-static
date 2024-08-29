@@ -23,7 +23,6 @@ const { data: result } = await useFetch('/api/category/getCategory')
 
 <style scoped lang="scss">
 .cate-box {
-  height: 350px;
   overflow: hidden;
   &-list {
     display: flex;

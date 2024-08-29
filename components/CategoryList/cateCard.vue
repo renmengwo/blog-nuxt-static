@@ -11,7 +11,9 @@ const { item } = toRefs(props)
 
 <template>
   <div class="card-item">
-    <div class="card-item-middle m-b-30" />
+    <div class="card-item-middle m-b-30">
+      <img :src="item.iconUrl" :alt="item.name" />
+    </div>
     <p class="card-item-label">
       {{ item.name }}
     </p>
@@ -21,7 +23,7 @@ const { item } = toRefs(props)
 <style scoped lang="scss">
 .card-item {
   flex: 0 0 200px;
-  height: 280px;
+  height: 230px;
   border-radius: 8px;
   box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.1);
   background: #fff;
@@ -33,8 +35,14 @@ const { item } = toRefs(props)
   &-middle {
     width: 60px;
     height: 60px;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #fff;
+    overflow: hidden;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
   &-label {
     font-size: 24px;
