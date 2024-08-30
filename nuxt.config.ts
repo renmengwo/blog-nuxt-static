@@ -36,7 +36,7 @@ export default defineNuxtConfig({
     // 该方式针对服务端渲染的场景也能生效，但是仅会针对发生在客户端测的请求进行代理。比如设置了server: false或者因为一些交互行为而触发的网络请求。
     devProxy: {
       '/api': {
-        target: 'http://localhost:3001', // 这里是接口地址
+        target: 'http://62.234.60.84/api', // 这里是接口地址
         changeOrigin: true,
         prependPath: true
       }
@@ -44,7 +44,7 @@ export default defineNuxtConfig({
     // 该配置用于服务端请求转发
     routeRules: {
       '/api/**': {
-        proxy: 'http://localhost:3001/**'
+        proxy: 'http://62.234.60.84/api/**'
       }
     }
   },
